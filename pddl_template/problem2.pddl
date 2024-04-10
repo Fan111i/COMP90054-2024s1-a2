@@ -74,6 +74,6 @@
   )
   (:goal (and
     ;Hero's Goal Location
-    (at-hero cell7)         
+    (at-hero cell1)         
   ))
 )
