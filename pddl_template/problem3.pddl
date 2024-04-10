@@ -7,7 +7,7 @@
             cell2_1 cell2_2 cell2_3 cell2_4 cell2_5
             cell3_1 cell3_2 cell3_3 cell3_4 cell3_5
             cell4_1 cell4_2 cell4_3 cell4_4 cell4_5 - cells
-            s1 s2 s3 s4 - swords
+            sword1 sword2 sword3 sword4 - swords
   )
   (:init
   
@@ -20,10 +20,10 @@
     
     
     ;Initial location of the swords
-    (at-sword s1 cell1_5)
-    (at-sword s2 cell2_3)
-    (at-sword s3 cell3_1)
-    (at-sword s4 cell4_3)
+    (at-sword sword1 cell1_5)
+    (at-sword sword2 cell2_3)
+    (at-sword sword3 cell3_1)
+    (at-sword sword4 cell4_3)
     
     
     ;Initial location of Monsters
