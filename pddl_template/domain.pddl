@@ -67,7 +67,6 @@
         :precondition (and 
             (at-hero ?from)
             (has-trap ?to)
-            (not (has-trap ?from))
             (arm-free)
             (not (is-destroyed ?to))
             (connected ?from ?to)
