@@ -58,7 +58,7 @@
             (is-destroyed ?from)
             (not (at-hero ?from))
             
-                )
+        )
     )
     
     ;When this action is executed, the hero gets into a location with a trap
@@ -77,7 +77,7 @@
             (at-hero ?to)
             (is-destroyed ?from)
             (not (at-hero ?from))
-                )
+        )
     )
 
     ;When this action is executed, the hero gets into a location with a monster
@@ -95,7 +95,7 @@
             (at-hero ?to)
             (is-destroyed ?from)
             (not (at-hero ?from))                
-                )
+        )
     )
     
     ;Hero picks a sword if he's in the same location
@@ -105,43 +105,41 @@
             (arm-free)
             (at-hero ?loc)
             (at-sword ?s ?loc)
-                      )
+        )
         :effect (and
             (holding ?s)
             (not (arm-free))
             (not (at-sword ?s ?loc))
-                )
+        )
     )
     
     ;Hero destroys his sword. 
     (:action destroy-sword
         :parameters (?loc - cells ?s - swords)
         :precondition (and 
-            (holding ?s)
             (at-hero ?loc)
+            (holding ?s)
             (not (has-trap ?loc))
             (not (has-monster ?loc))
-                      )
+        )
         :effect (and
             (not (holding ?s))
             (arm-free)
             (is-destroyed ?s)
-                )
+        )
     )
     
     ;Hero disarms the trap with his free arm
     (:action disarm-trap
         :parameters (?loc - cells)
         :precondition (and 
-            (has-trap ?loc)
             (at-hero ?loc)
+            (has-trap ?loc)
             (arm-free)
-            (not (has-monster ?loc))
-            
-                      )
+        )
         :effect (and
             (not (has-trap ?loc))
-                )
+        )
     )
     
 )
