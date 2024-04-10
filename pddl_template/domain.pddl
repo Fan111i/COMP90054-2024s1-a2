@@ -33,114 +33,115 @@
         
         ;Hero's holding a sword
         (holding ?s - swords)
-
-        ;Hero disarm the trap
-        (trap-disarmed ?loc - cells)
-
+        
     )
 
     ;Hero can move if the
     ;    - hero is at current location
-    ;    - cells are connected,
-    ;    - there is no trap in current loc, and
+    ;    - cells are connected, 
+    ;    - there is no trap in current loc, and 
     ;    - destination does not have a trap/monster/has-been-destroyed
     ;Effects move the hero, and destroy the original cell. No need to destroy the sword.
     (:action move
         :parameters (?from ?to - cells)
-        :precondition (and
+        :precondition (and 
             (at-hero ?from)
-            (connected ?from ?to)
-            (not (has-trap ?from))
-            (not (has-trap ?to))
-            (not (has-monster ?from))
             (not (has-monster ?to))
+            (not (has-trap ?to))
+            (not (has-trap ?from))
+            (not (is-destroyed ?to))
+            (connected ?from ?to)
+                            
         )
-        :effect (and
+        :effect (and 
             (at-hero ?to)
             (is-destroyed ?from)
             (not (at-hero ?from))
-        )
+            
+                )
     )
-
+    
     ;When this action is executed, the hero gets into a location with a trap
     (:action move-to-trap
         :parameters (?from ?to - cells)
-        :precondition (and
+        :precondition (and 
             (at-hero ?from)
-            (connected ?from ?to)
-            (not (has-trap ?from))
             (has-trap ?to)
+            (not (has-trap ?from))
             (arm-free)
+            (not (is-destroyed ?to))
+            (connected ?from ?to)
+            
         )
-        :effect (and
+        :effect (and 
             (at-hero ?to)
             (is-destroyed ?from)
             (not (at-hero ?from))
-
-        )
+                )
     )
 
     ;When this action is executed, the hero gets into a location with a monster
     (:action move-to-monster
         :parameters (?from ?to - cells ?s - swords)
-        :precondition (and
+        :precondition (and 
             (at-hero ?from)
-            (connected ?from ?to)
-            (not (has-trap ?from))
             (has-monster ?to)
+            (not (has-trap ?from))
             (holding ?s)
+            (not (is-destroyed ?to))
+            (connected ?from ?to)                
         )
-        :effect (and
+        :effect (and 
             (at-hero ?to)
             (is-destroyed ?from)
-            (not (at-hero ?from))
-
-        )
+            (not (at-hero ?from))                
+                )
     )
-
+    
     ;Hero picks a sword if he's in the same location
     (:action pick-sword
         :parameters (?loc - cells ?s - swords)
-        :precondition (and
-            (at-sword ?s ?loc)
-            (at-hero ?loc)
+        :precondition (and 
             (arm-free)
-        )
+            (at-hero ?loc)
+            (at-sword ?s ?loc)
+                      )
         :effect (and
             (holding ?s)
             (not (arm-free))
             (not (at-sword ?s ?loc))
-        )
+                )
     )
-
-    ;Hero destroys his sword.
+    
+    ;Hero destroys his sword. 
     (:action destroy-sword
         :parameters (?loc - cells ?s - swords)
-        :precondition (and
+        :precondition (and 
             (holding ?s)
             (at-hero ?loc)
             (not (has-trap ?loc))
             (not (has-monster ?loc))
-        )
+                      )
         :effect (and
+            (not (holding ?s))
             (arm-free)
             (is-destroyed ?s)
-            (not (holding ?s))
-        )
+                )
     )
-
+    
     ;Hero disarms the trap with his free arm
     (:action disarm-trap
         :parameters (?loc - cells)
-        :precondition (and
-            (at-hero ?loc)
+        :precondition (and 
             (has-trap ?loc)
+            (at-hero ?loc)
             (arm-free)
-        )
+            (not (has-monster ?loc))
+            
+                      )
         :effect (and
-            (trap-disarmed ?loc)
             (not (has-trap ?loc))
-        )
+                )
     )
     
 )
