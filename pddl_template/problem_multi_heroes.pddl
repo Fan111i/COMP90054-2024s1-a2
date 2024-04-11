@@ -25,13 +25,13 @@
     (locked cell1_2)
     (locked cell1_3)
     (locked cell2_1)
-    (locked cell2_4)
+
     
     ; Initial items
     (at-key key cell4_4)
     (has-monster cell1_4)
     (has-monster cell3_2)
-    (has-monster cell3_3)
+    (has-monster cell2_4)
     (has-monster cell3_5)
     (has-monster cell4_3)
     (has-trap cell2_2)
