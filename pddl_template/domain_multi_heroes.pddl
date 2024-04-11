@@ -84,7 +84,7 @@
       (has-trap ?to)
       (not (has-trap ?from))
       (arm-free ?h)
-      (or (not (is-destroyed ?to)) (at-hero ?h ?to))
+      (not (is-destroyed ?to))
       (connected ?from ?to)
       (not (hero-complete ?h))
     )
