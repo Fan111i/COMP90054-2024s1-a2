@@ -221,8 +221,8 @@
     )
   )
 
-  ; Hero shares a key if they're in the same location
-  (:action share-key
+  ; Hero givees his key to other hero if they're in the same location
+  (:action give-key
     :parameters (?h1 ?h2 - heros ?loc - cells ?key - keys)
     :precondition (and 
       (at-hero ?h1 ?loc)
@@ -241,8 +241,8 @@
     )
   )
 
-  ; Hero shares a sword if they're in the same location
-  (:action share-sword
+  ; Hero gives a sword to other hero if they're in the same location
+  (:action give-sword
     :parameters (?h1 ?h2 - heros ?loc - cells ?s - swords)
     :precondition (and 
       (at-hero ?h1 ?loc)
@@ -263,7 +263,7 @@
   )
 
   ; When a hero doesn't do anything in one turn
-  (:action stay
+  (:action take-no-action
     :parameters (?h - heros)
     :precondition (and 
       (not (hero-complete ?h))             
